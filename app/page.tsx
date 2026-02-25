@@ -26,8 +26,8 @@ export default function Presentation() {
             </h2>
           </div>
           <div className="space-y-3 text-gray-600 pt-8 border-t border-gray-200">
-            <p className="text-lg font-medium">MGIT 51133 — Enterprise and Business Information Systems</p>
-            <p className="text-base">Group Assignment — Designing an Integrated Digital Enterprise</p>
+            <p className="text-lg font-medium">MGIT 51133 - Enterprise and Business Information Systems</p>
+            <p className="text-base">Group Assignment - Designing an Integrated Digital Enterprise</p>
           </div>
         </div>
       </Slide>
@@ -35,7 +35,7 @@ export default function Presentation() {
       {/* SLIDE 2: Student Details */}
       <Slide>
         <div className="space-y-8">
-          <SectionTitle title="Group 11 — Student Details" />
+          <SectionTitle title="Group 11 - Student Details" />
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
@@ -85,10 +85,10 @@ export default function Presentation() {
       {/* SLIDE 4: Organizational Overview */}
       <Slide>
         <div className="space-y-8">
-          <SectionTitle title="Hatton National Bank (HNB) — Overview" />
+          <SectionTitle title="Hatton National Bank (HNB) - Overview" />
           <div className="grid grid-cols-3 gap-8 items-start">
-            <div className="col-span-1">
-              <img src="/images/bank-professionals.jpg" alt="Banking professionals" className="rounded-2xl shadow-lg w-full h-72 object-cover" />
+            <div className="col-span-1 flex items-center justify-center">
+              <img src="/images/hnb_logo.png" alt="HNB logo" className="rounded-2xl shadow-lg w-full max-w-xs h-auto object-contain bg-white p-6" />
             </div>
             <div className="col-span-1 space-y-4">
               <BulletList
@@ -131,7 +131,7 @@ export default function Presentation() {
                 items: [
                   'Heavy manual data extraction',
                   'Excel consolidation',
-                  'Delays 3–5 business days for mgmt accounts',
+                  'Delays 3-5 business days for mgmt accounts',
                   'Limited real-time insights',
                 ],
               },
@@ -150,7 +150,7 @@ export default function Presentation() {
                 <ul className="space-y-2">
                   {col.items.map((item, i) => (
                     <li key={i} className="text-sm text-gray-600 leading-relaxed">
-                      • {item}
+                      - {item}
                     </li>
                   ))}
                 </ul>
@@ -184,101 +184,99 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Why Siloed Systems Hurt HNB" />
-          <BulletList
-            items={[
+          <ul className="space-y-4 max-w-5xl">
+            {[
               'Month-end close takes ~5 days due to manual reconciliation',
               'Relationship managers need multiple systems to answer one client query',
               'Payroll depends on CSV exports; failures create errors and dissatisfaction',
-              'Regulatory reporting compiled from many systems → high restatement risk',
-              'Fraud flags not propagated across compliance/access/notifications',
-            ]}
-            delay={0.12}
-          />
+              'Regulatory reporting compiled from many systems -> high restatement risk',
+              'Fraud flags not propagated across compliance, access, and notifications',
+            ].map((item, index) => (
+              <li key={index} className="flex gap-4">
+                <span className="w-2 h-2 rounded-full bg-purple-600 flex-shrink-0 mt-2.5" />
+                <span className="text-gray-700 leading-relaxed text-base md:text-lg">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </Slide>
 
       {/* SLIDE 8: Target Enterprise Architecture */}
-      <Slide>
-        <div className="space-y-8">
+      <Slide contentClassName="py-12">
+        <div className="space-y-6">
           <SectionTitle title="Proposed Integrated Digital Enterprise Architecture" />
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <div className="col-span-2 space-y-4">
+          <div className="space-y-5">
+            <div className="grid grid-cols-4 gap-4 items-stretch">
               {[
                 {
                   title: 'External Touchpoints',
+                  layer: 'Layer 1',
                   color: 'from-blue-600 to-cyan-500',
+                  note: 'Unified customer access',
                   items: ['Mobile Banking', 'Internet Banking', 'ATM Network', 'Open Banking API'],
-                  note: 'Unified customer access across channels',
                 },
                 {
-                  title: 'API Gateway & Security Layer',
+                  title: 'API Gateway & Security',
+                  layer: 'Layer 2',
                   color: 'from-indigo-600 to-violet-500',
+                  note: 'Identity and threat controls',
                   items: ['OAuth2 + MFA', 'Rate Limiting', 'WAF', 'Audit Logs + SIEM'],
-                  note: 'Single control point for identity, policy, and threat protection',
                 },
                 {
-                  title: 'SAP BTP Integration & Core Systems',
+                  title: 'SAP BTP + Core Systems',
+                  layer: 'Layer 3',
                   color: 'from-fuchsia-600 to-pink-500',
+                  note: 'Process orchestration',
                   items: ['Integration Suite', 'API Management', 'Core Banking (T24)', 'CRM + ERP'],
-                  note: 'Process orchestration and trusted system-of-record integration',
                 },
                 {
-                  title: 'Enterprise Data Warehouse & MDM',
+                  title: 'EDW + MDM + Analytics',
+                  layer: 'Layer 4',
                   color: 'from-emerald-600 to-teal-500',
+                  note: 'Trusted decision data',
                   items: ['Regulatory Reporting', 'Risk & AML Analytics', 'Customer 360', 'Forecasting & BI'],
-                  note: 'Reliable data foundation for compliance and decisions',
                 },
               ].map((layer, idx) => (
                 <div key={idx} className="relative">
-                  <div className={`absolute -inset-px rounded-xl bg-gradient-to-r ${layer.color} opacity-35`} />
-                  <div className="relative rounded-xl border border-white/70 bg-white/90 px-5 py-4 shadow-sm">
-                    <div className="flex items-center justify-between gap-4">
-                      <h3 className="text-base font-semibold text-gray-900">{layer.title}</h3>
-                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Layer {idx + 1}</span>
+                  <div className={`absolute -inset-px rounded-2xl bg-gradient-to-r ${layer.color} opacity-35`} />
+                  <div className="relative rounded-2xl border border-white/70 bg-white/95 p-4 shadow-sm h-full">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-semibold text-gray-900">{layer.title}</h3>
+                      <span className="text-[11px] text-gray-500 uppercase tracking-wide">{layer.layer}</span>
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">{layer.note}</p>
-                    <div className="flex flex-wrap gap-2 mt-3">
+                    <p className="text-xs text-gray-600 mt-2">{layer.note}</p>
+                    <ul className="mt-3 space-y-1.5">
                       {layer.items.map((item, itemIdx) => (
-                        <span
-                          key={itemIdx}
-                          className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-700 bg-gray-100 border border-gray-200"
-                        >
-                          {item}
-                        </span>
+                        <li key={itemIdx} className="text-xs text-gray-700 leading-relaxed">- {item}</li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                  {idx < 3 && (
-                    <div className="flex justify-center py-2 text-gray-400 font-semibold text-sm">
-                      Flow Down
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
 
-            <div className="space-y-4">
-              <InfoCard delay={0.2}>
-                <h3 className="text-sm font-semibold text-gray-900 mb-3">Integration Outcomes</h3>
-                <ul className="space-y-2">
-                  {[
-                    'Straight-through processing for loans and payments',
-                    'Near real-time compliance and risk visibility',
-                    'Lower manual reconciliation and reporting effort',
-                    'Faster partner onboarding through reusable APIs',
-                  ].map((item, idx) => (
-                    <li key={idx} className="text-xs text-gray-700 leading-relaxed">- {item}</li>
-                  ))}
+            <div className="flex items-center justify-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Channel {'->'} Security {'->'} Integration {'->'} Data and Insights
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <InfoCard delay={0.2} className="rounded-2xl">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">What This Enables</h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>- Straight-through processing for loans and payments</li>
+                  <li>- Near real-time compliance and risk visibility</li>
+                  <li>- Lower manual reconciliation and reporting effort</li>
+                  <li>- Faster partner onboarding via reusable APIs</li>
                 </ul>
               </InfoCard>
 
-              <InfoCard delay={0.3}>
+              <InfoCard delay={0.3} className="rounded-2xl">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Reference KPIs</h3>
-                <div className="space-y-2 text-xs text-gray-700">
-                  <p><span className="font-semibold text-emerald-700">Month-end close:</span> 5 days to 1-2 days</p>
-                  <p><span className="font-semibold text-emerald-700">Report preparation:</span> 3 days to same-day</p>
-                  <p><span className="font-semibold text-emerald-700">API onboarding:</span> weeks to days</p>
-                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li><span className="font-semibold text-emerald-700">Month-end close:</span> 5 days {'->'} 1-2 days</li>
+                  <li><span className="font-semibold text-emerald-700">Report prep:</span> 3 days {'->'} same-day</li>
+                  <li><span className="font-semibold text-emerald-700">API onboarding:</span> weeks {'->'} days</li>
+                </ul>
               </InfoCard>
             </div>
           </div>
@@ -288,11 +286,11 @@ export default function Presentation() {
       {/* SLIDE 9: Enterprise Systems */}
       <Slide>
         <div className="space-y-8">
-          <SectionTitle title="Enterprise Systems — Roles" />
-          <div className="grid grid-cols-4 gap-6 items-start">
-            <div className="col-span-1">
+          <SectionTitle title="Enterprise Systems - Roles" />
+          <div className="grid grid-cols-3 gap-6 items-start">
+            {/* <div className="col-span-1">
               <img src="/images/enterprise-systems.jpg" alt="Enterprise systems" className="rounded-2xl shadow-lg w-full h-80 object-cover" />
-            </div>
+            </div> */}
             <div className="col-span-3 grid grid-cols-3 gap-4">
               {[
                 {
@@ -303,7 +301,7 @@ export default function Presentation() {
                 {
                   title: 'CRM',
                   subtitle: 'Salesforce FSC',
-                  desc: '360° customer view, service history, cross-sell opportunities',
+                  desc: '360-degree customer view, service history, cross-sell opportunities',
                 },
                 {
                   title: 'ERP',
@@ -349,7 +347,7 @@ export default function Presentation() {
       {/* SLIDE 11: Hybrid Cloud Infrastructure */}
       <Slide>
         <div className="space-y-8">
-          <SectionTitle title="IT Infrastructure — Hybrid Cloud Strategy" />
+          <SectionTitle title="IT Infrastructure - Hybrid Cloud Strategy" />
           <div className="grid grid-cols-3 gap-6 items-start">
             <img src="/images/cloud-infrastructure.jpg" alt="Cloud infrastructure" className="col-span-1 rounded-2xl shadow-lg w-full h-72 object-cover" />
             <InfoCard delay={0} className="col-span-1">
@@ -407,7 +405,7 @@ export default function Presentation() {
       {/* SLIDE 13: Security Framework */}
       <Slide>
         <div className="space-y-8">
-          <SectionTitle title="Information Systems Security — Zero Trust Controls" />
+          <SectionTitle title="Information Systems Security - Zero Trust Controls" />
           <div className="grid grid-cols-6 gap-4">
             <img src="/images/cybersecurity.jpg" alt="Cybersecurity" className="col-span-2 rounded-2xl shadow-lg w-full h-72 object-cover" />
             <div className="col-span-4 grid grid-cols-2 gap-4">
@@ -421,7 +419,7 @@ export default function Presentation() {
                   <h4 className="font-semibold text-gray-900 mb-3 text-sm">{control.label}</h4>
                   <ul className="space-y-1">
                     {control.items.map((item, i) => (
-                      <li key={i} className="text-xs text-gray-600">• {item}</li>
+                      <li key={i} className="text-xs text-gray-600">- {item}</li>
                     ))}
                   </ul>
                 </InfoCard>
@@ -470,10 +468,10 @@ export default function Presentation() {
       {/* SLIDE 15: Conclusion */}
       <Slide>
         <div className="space-y-12">
-          <SectionTitle title="Conclusion — Integrated, Secure, Scalable Digital Enterprise" />
+          <SectionTitle title="Conclusion - Integrated, Secure, Scalable Digital Enterprise" />
           <BulletList
             items={[
-              'Business drivers → systems → infrastructure → security → e-business',
+              'Business drivers -> systems -> infrastructure -> security -> e-business',
               'Integration avoids duplication, delays, and risk',
               'Enables operational efficiency, compliance resilience, and innovation',
               'Transforms HNB into a cohesive, data-driven digital bank',

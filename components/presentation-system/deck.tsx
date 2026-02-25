@@ -33,6 +33,50 @@ export function Deck({ children, totalSlides }: DeckProps) {
     }
   }, [currentSlide]);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const slides = Array.from(container.querySelectorAll<HTMLElement>('.slide-snap'));
+    if (slides.length === 0) return;
+
+    let rafId: number | null = null;
+
+    const updateActiveSlideFromScroll = () => {
+      const containerTop = container.getBoundingClientRect().top;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      slides.forEach((slide, index) => {
+        const distance = Math.abs(slide.getBoundingClientRect().top - containerTop);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      const nextSlide = closestIndex + 1;
+      setCurrentSlide((prev) => (prev === nextSlide ? prev : nextSlide));
+    };
+
+    const handleScroll = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      rafId = requestAnimationFrame(updateActiveSlideFromScroll);
+    };
+
+    updateActiveSlideFromScroll();
+    container.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [totalSlides]);
+
   return (
     <div
       ref={containerRef}
