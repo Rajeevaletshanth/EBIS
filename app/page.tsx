@@ -86,20 +86,23 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Hatton National Bank (HNB) — Overview" />
-          <div className="grid grid-cols-2 gap-8">
-            <div className="space-y-4">
+          <div className="grid grid-cols-3 gap-8 items-start">
+            <div className="col-span-1">
+              <img src="/images/bank-professionals.jpg" alt="Banking professionals" className="rounded-2xl shadow-lg w-full h-72 object-cover" />
+            </div>
+            <div className="col-span-1 space-y-4">
               <BulletList
                 items={[
-                  'Established commercial bank in Sri Lanka (est. 1888)',
-                  '250+ branches, 900+ ATMs',
-                  '4M+ customers (individuals and businesses)',
-                  'Retail, corporate, trade finance, treasury, SME banking',
-                  'Regulated by Central Bank of Sri Lanka (CBSL)',
+                  'Est. 1888',
+                  '250+ branches',
+                  '900+ ATMs',
+                  '4M+ customers',
+                  'Multi-service',
                 ]}
                 delay={0.08}
               />
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="col-span-1 space-y-3">
               <Stat label="Branches" value="250+" delay={0} />
               <Stat label="ATMs" value="900+" delay={0.1} />
               <Stat label="Customers" value="4M+" delay={0.2} />
@@ -286,30 +289,35 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Enterprise Systems — Roles" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Core Banking',
-                subtitle: 'Temenos T24',
-                desc: 'System of record for deposits, loans, payments, treasury operations',
-              },
-              {
-                title: 'CRM',
-                subtitle: 'Salesforce FSC',
-                desc: '360° customer view, service history, cross-sell opportunities',
-              },
-              {
-                title: 'ERP',
-                subtitle: 'SAP S/4HANA',
-                desc: 'Finance, HR, procurement, statutory reporting; reduces manual reconciliation',
-              },
-            ].map((sys, idx) => (
-              <InfoCard key={idx} delay={idx * 0.15}>
-                <h3 className="font-semibold text-gray-900">{sys.title}</h3>
-                <p className="text-xs text-[#2563EB] font-medium mt-1 mb-3">{sys.subtitle}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">{sys.desc}</p>
-              </InfoCard>
-            ))}
+          <div className="grid grid-cols-4 gap-6 items-start">
+            <div className="col-span-1">
+              <img src="/images/enterprise-systems.jpg" alt="Enterprise systems" className="rounded-2xl shadow-lg w-full h-80 object-cover" />
+            </div>
+            <div className="col-span-3 grid grid-cols-3 gap-4">
+              {[
+                {
+                  title: 'Core Banking',
+                  subtitle: 'Temenos T24',
+                  desc: 'System of record for deposits, loans, payments, treasury operations',
+                },
+                {
+                  title: 'CRM',
+                  subtitle: 'Salesforce FSC',
+                  desc: '360° customer view, service history, cross-sell opportunities',
+                },
+                {
+                  title: 'ERP',
+                  subtitle: 'SAP S/4HANA',
+                  desc: 'Finance, HR, procurement, statutory reporting; reduces manual reconciliation',
+                },
+              ].map((sys, idx) => (
+                <InfoCard key={idx} delay={idx * 0.15}>
+                  <h3 className="font-semibold text-gray-900">{sys.title}</h3>
+                  <p className="text-xs text-purple-600 font-medium mt-1 mb-3">{sys.subtitle}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{sys.desc}</p>
+                </InfoCard>
+              ))}
+            </div>
           </div>
         </div>
       </Slide>
@@ -318,17 +326,22 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Enterprise Data Warehouse & Analytics" />
-          <div className="space-y-6">
-            <BulletList
-              items={[
-                'Integrate CBS + CRM + ERP into Enterprise Data Warehouse (EDW)',
-                'Real-time dashboards for management and operational decision-making',
-                'ML for fraud detection, credit risk assessment, churn analysis',
-                'Enables data-driven decisions and personalization at scale',
-                'Foundation for advanced analytics and business intelligence',
-              ]}
-              delay={0.1}
-            />
+          <div className="grid grid-cols-2 gap-8 items-start">
+            <div className="space-y-6">
+              <BulletList
+                items={[
+                  'Integrate CBS + CRM + ERP into Enterprise Data Warehouse (EDW)',
+                  'Real-time dashboards for management and operational decision-making',
+                  'ML for fraud detection, credit risk assessment, churn analysis',
+                  'Enables data-driven decisions and personalization at scale',
+                  'Foundation for advanced analytics and business intelligence',
+                ]}
+                delay={0.1}
+              />
+            </div>
+            <div>
+              <img src="/images/data-analytics.jpg" alt="Data analytics dashboard" className="rounded-2xl shadow-lg w-full h-72 object-cover" />
+            </div>
           </div>
         </div>
       </Slide>
@@ -337,27 +350,28 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="IT Infrastructure — Hybrid Cloud Strategy" />
-          <div className="grid grid-cols-2 gap-8">
-            <InfoCard delay={0}>
-              <h3 className="font-semibold text-gray-900 mb-4">On-Premises / Private Cloud</h3>
+          <div className="grid grid-cols-3 gap-6 items-start">
+            <img src="/images/cloud-infrastructure.jpg" alt="Cloud infrastructure" className="col-span-1 rounded-2xl shadow-lg w-full h-72 object-cover" />
+            <InfoCard delay={0} className="col-span-1">
+              <h3 className="font-semibold text-gray-900 mb-4">On-Premises</h3>
               <BulletList
                 items={[
-                  'Core Banking + SAP ERP',
-                  'Data localization & ultra-low latency',
-                  'Two data centers (primary + DR)',
-                  'Regulated data storage',
+                  'Core Banking + ERP',
+                  'Ultra-low latency',
+                  'Primary + DR',
+                  'Data localization',
                 ]}
                 delay={0.08}
               />
             </InfoCard>
-            <InfoCard delay={0.15}>
-              <h3 className="font-semibold text-gray-900 mb-4">Public Cloud — Azure</h3>
+            <InfoCard delay={0.15} className="col-span-1">
+              <h3 className="font-semibold text-gray-900 mb-4">Public Cloud</h3>
               <BulletList
                 items={[
-                  'Digital channels scalability',
-                  'Containers/AKS architecture',
-                  'Analytics/AI workloads',
-                  'DR for non-regulated workloads',
+                  'Digital channels',
+                  'Containers/AKS',
+                  'Analytics/AI',
+                  'Scalability',
                 ]}
                 delay={0.08}
               />
@@ -394,23 +408,25 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Information Systems Security — Zero Trust Controls" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {[
-              { label: 'Identity & Access', items: ['MFA', 'RBAC', 'SSO federation'] },
-              { label: 'Privileged Access', items: ['JIT access', 'Session logging', 'PAM'] },
-              { label: 'Encryption', items: ['At-rest', 'In-transit', 'Standards'] },
-              { label: 'Network Security', items: ['Segmentation', 'WAF', 'Isolation'] },
-              { label: 'Monitoring', items: ['SIEM', 'SOC 24/7', 'Alert automation'] },
-            ].map((control, idx) => (
-              <InfoCard key={idx} delay={idx * 0.1}>
-                <h4 className="font-semibold text-gray-900 mb-3 text-sm">{control.label}</h4>
-                <ul className="space-y-1">
-                  {control.items.map((item, i) => (
-                    <li key={i} className="text-xs text-gray-600">• {item}</li>
-                  ))}
-                </ul>
-              </InfoCard>
-            ))}
+          <div className="grid grid-cols-6 gap-4">
+            <img src="/images/cybersecurity.jpg" alt="Cybersecurity" className="col-span-2 rounded-2xl shadow-lg w-full h-72 object-cover" />
+            <div className="col-span-4 grid grid-cols-2 gap-4">
+              {[
+                { label: 'Identity & Access', items: ['MFA', 'RBAC', 'SSO federation'] },
+                { label: 'Privileged Access', items: ['JIT access', 'Session logging', 'PAM'] },
+                { label: 'Encryption', items: ['At-rest', 'In-transit', 'Standards'] },
+                { label: 'Network Security', items: ['Segmentation', 'WAF', 'Isolation'] },
+              ].map((control, idx) => (
+                <InfoCard key={idx} delay={idx * 0.1}>
+                  <h4 className="font-semibold text-gray-900 mb-3 text-sm">{control.label}</h4>
+                  <ul className="space-y-1">
+                    {control.items.map((item, i) => (
+                      <li key={i} className="text-xs text-gray-600">• {item}</li>
+                    ))}
+                  </ul>
+                </InfoCard>
+              ))}
+            </div>
           </div>
         </div>
       </Slide>
@@ -419,27 +435,30 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Electronic Business & Digital Value Creation" />
-          <div className="grid grid-cols-2 gap-8">
-            <InfoCard delay={0}>
-              <h3 className="font-semibold text-gray-900 mb-4">Digital Customer Experience</h3>
+          <div className="grid grid-cols-3 gap-6 items-start">
+            <div className="col-span-1">
+              <img src="/images/digital-banking.jpg" alt="Digital banking" className="rounded-2xl shadow-lg w-full h-72 object-cover" />
+            </div>
+            <InfoCard delay={0} className="col-span-1">
+              <h3 className="font-semibold text-gray-900 mb-4 text-base">Digital Experience</h3>
               <BulletList
                 items={[
-                  'Enhanced mobile banking with real-time insights',
-                  'AI customer service chatbot (24/7)',
-                  'Personalized financial recommendations',
-                  'Seamless omnichannel experience',
+                  'Mobile banking insights',
+                  'AI chatbot 24/7',
+                  'Personalized recommendations',
+                  'Omnichannel experience',
                 ]}
                 delay={0.08}
               />
             </InfoCard>
-            <InfoCard delay={0.15}>
-              <h3 className="font-semibold text-gray-900 mb-4">New Digital Products / Revenue</h3>
+            <InfoCard delay={0.15} className="col-span-1">
+              <h3 className="font-semibold text-gray-900 mb-4 text-base">New Products</h3>
               <BulletList
                 items={[
-                  'Open banking API platform (partner ecosystem)',
-                  'SME-focused digital solution (BizConnect)',
-                  'Data-as-a-service offerings',
-                  'Innovation lab for fintech partnerships',
+                  'Open banking APIs',
+                  'SME digital solutions',
+                  'Data-as-a-service',
+                  'Fintech partnerships',
                 ]}
                 delay={0.08}
               />
