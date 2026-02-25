@@ -1,0 +1,413 @@
+'use client';
+
+import { Deck } from '@/components/presentation-system/deck';
+import { Slide } from '@/components/presentation-system/slide';
+import { SectionTitle } from '@/components/presentation-system/section-title';
+import { BulletList } from '@/components/presentation-system/bullet-list';
+import { InfoCard } from '@/components/presentation-system/info-card';
+import { Stat } from '@/components/presentation-system/stat';
+import { DiagramRow } from '@/components/presentation-system/diagram-row';
+
+export default function Presentation() {
+  return (
+    <Deck totalSlides={15}>
+      {/* SLIDE 1: Title Slide */}
+      <Slide>
+        <div className="space-y-12">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-purple-100 rounded-full mb-4">
+              <span className="w-2 h-2 rounded-full bg-purple-600" />
+              <span className="text-sm font-semibold text-purple-700">Financial Innovation</span>
+            </div>
+            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-900 via-purple-700 to-orange-600 bg-clip-text text-transparent leading-tight text-balance">
+              Designing an Integrated Digital Enterprise Architecture
+            </h1>
+            <h2 className="text-2xl text-gray-700 font-semibold text-balance leading-relaxed">
+              Strategic Framework for Hatton National Bank
+            </h2>
+          </div>
+          <div className="space-y-3 text-gray-600 pt-8 border-t border-gray-200">
+            <p className="text-lg font-medium">MGIT 51133 — Enterprise and Business Information Systems</p>
+            <p className="text-base">Group Assignment — Designing an Integrated Digital Enterprise</p>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 2: Student Details */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Group 11 — Student Details" />
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b-2 border-purple-600 bg-gradient-to-r from-purple-50 to-orange-50">
+                  <th className="text-left py-5 px-6 font-bold text-purple-900">Student Number</th>
+                  <th className="text-left py-5 px-6 font-bold text-purple-900">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { id: 'FGS/MSC/MIT/2025/038', name: 'S.S. Perera' },
+                  { id: 'FGS/MSC/MIT/2025/078', name: 'R. Rajeevaletetshanth' },
+                  { id: 'FGS/MSC/MIT/2025/083', name: 'N.A.C.J.C. Jayasinghe' },
+                  { id: 'FGS/MSC/MIT/2025/084', name: 'W. M. H. A. Wijekoon' },
+                ].map((student, index) => (
+                  <tr key={index} className="border-b border-gray-200 hover:bg-purple-50 transition-colors">
+                    <td className="py-5 px-6 text-gray-700 font-mono text-sm">{student.id}</td>
+                    <td className="py-5 px-6 text-gray-900 font-medium">{student.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 3: Agenda */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Agenda" />
+          <BulletList
+            items={[
+              'Organizational Overview',
+              'Role of IT & Business Drivers',
+              'Enterprise Systems & Integrations',
+              'IT Infrastructure Design (Hybrid Cloud)',
+              'Information Systems Security',
+              'Electronic Business & Digital Value Creation',
+              'Reflection & Integration',
+              'Conclusion',
+            ]}
+            delay={0.08}
+          />
+        </div>
+      </Slide>
+
+      {/* SLIDE 4: Organizational Overview */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Hatton National Bank (HNB) — Overview" />
+          <div className="grid grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <BulletList
+                items={[
+                  'Established commercial bank in Sri Lanka (est. 1888)',
+                  '250+ branches, 900+ ATMs',
+                  '4M+ customers (individuals and businesses)',
+                  'Retail, corporate, trade finance, treasury, SME banking',
+                  'Regulated by Central Bank of Sri Lanka (CBSL)',
+                ]}
+                delay={0.08}
+              />
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              <Stat label="Branches" value="250+" delay={0} />
+              <Stat label="ATMs" value="900+" delay={0.1} />
+              <Stat label="Customers" value="4M+" delay={0.2} />
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 5: Current Role of IT */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Current Role of IT at HNB" />
+          <div className="grid grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Operational',
+                items: [
+                  'Core transaction processing',
+                  'ATM network management',
+                  'Branch terminals',
+                  'Back-office (partially legacy/manual)',
+                ],
+              },
+              {
+                title: 'Management & Decision Support',
+                items: [
+                  'Heavy manual data extraction',
+                  'Excel consolidation',
+                  'Delays 3–5 business days for mgmt accounts',
+                  'Limited real-time insights',
+                ],
+              },
+              {
+                title: 'Customer-Facing',
+                items: [
+                  'Mobile/internet banking',
+                  'ATM services',
+                  'Weak back-office integration',
+                  'Manual re-entry in some processes',
+                ],
+              },
+            ].map((col, idx) => (
+              <InfoCard key={idx} delay={idx * 0.15}>
+                <h3 className="font-semibold text-gray-900 mb-4">{col.title}</h3>
+                <ul className="space-y-2">
+                  {col.items.map((item, i) => (
+                    <li key={i} className="text-sm text-gray-600 leading-relaxed">
+                      • {item}
+                    </li>
+                  ))}
+                </ul>
+              </InfoCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 6: Key Business Drivers */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Key Business Drivers for Digital Transformation" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              'Competitive pressure from fintechs/digital banks',
+              'Regulatory compliance & cybersecurity directions',
+              'Customer experience expectations (real-time, 24/7)',
+              'Operational efficiency & cost reduction (automation/RPA)',
+              'Data monetization & new revenue streams (analytics/AI)',
+            ].map((driver, idx) => (
+              <InfoCard key={idx} delay={idx * 0.12}>
+                <p className="text-gray-700 leading-relaxed">{driver}</p>
+              </InfoCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 7: The Problem - Siloed Systems */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Why Siloed Systems Hurt HNB" />
+          <BulletList
+            items={[
+              'Month-end close takes ~5 days due to manual reconciliation',
+              'Relationship managers need multiple systems to answer one client query',
+              'Payroll depends on CSV exports; failures create errors and dissatisfaction',
+              'Regulatory reporting compiled from many systems → high restatement risk',
+              'Fraud flags not propagated across compliance/access/notifications',
+            ]}
+            delay={0.12}
+          />
+        </div>
+      </Slide>
+
+      {/* SLIDE 8: Target Enterprise Architecture */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Proposed Integrated Digital Enterprise Architecture" />
+          <div className="space-y-6">
+            <DiagramRow
+              items={[
+                { label: 'Digital Channels' },
+                { label: 'API Gateway', highlight: true },
+                { label: 'Core Banking (T24)' },
+              ]}
+              delay={0}
+            />
+            <div className="grid grid-cols-5 gap-3 justify-center px-8">
+              {['CRM', 'ERP', 'EDW + BI', 'Security', 'Monitoring'].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="px-4 py-3 border border-[#E5E7EB] rounded text-center text-sm text-gray-700 bg-gray-50"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 9: Enterprise Systems */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Enterprise Systems — Roles" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Core Banking',
+                subtitle: 'Temenos T24',
+                desc: 'System of record for deposits, loans, payments, treasury operations',
+              },
+              {
+                title: 'CRM',
+                subtitle: 'Salesforce FSC',
+                desc: '360° customer view, service history, cross-sell opportunities',
+              },
+              {
+                title: 'ERP',
+                subtitle: 'SAP S/4HANA',
+                desc: 'Finance, HR, procurement, statutory reporting; reduces manual reconciliation',
+              },
+            ].map((sys, idx) => (
+              <InfoCard key={idx} delay={idx * 0.15}>
+                <h3 className="font-semibold text-gray-900">{sys.title}</h3>
+                <p className="text-xs text-[#2563EB] font-medium mt-1 mb-3">{sys.subtitle}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{sys.desc}</p>
+              </InfoCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 10: Data & Analytics Layer */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Enterprise Data Warehouse & Analytics" />
+          <div className="space-y-6">
+            <BulletList
+              items={[
+                'Integrate CBS + CRM + ERP into Enterprise Data Warehouse (EDW)',
+                'Real-time dashboards for management and operational decision-making',
+                'ML for fraud detection, credit risk assessment, churn analysis',
+                'Enables data-driven decisions and personalization at scale',
+                'Foundation for advanced analytics and business intelligence',
+              ]}
+              delay={0.1}
+            />
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 11: Hybrid Cloud Infrastructure */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="IT Infrastructure — Hybrid Cloud Strategy" />
+          <div className="grid grid-cols-2 gap-8">
+            <InfoCard delay={0}>
+              <h3 className="font-semibold text-gray-900 mb-4">On-Premises / Private Cloud</h3>
+              <BulletList
+                items={[
+                  'Core Banking + SAP ERP',
+                  'Data localization & ultra-low latency',
+                  'Two data centers (primary + DR)',
+                  'Regulated data storage',
+                ]}
+                delay={0.08}
+              />
+            </InfoCard>
+            <InfoCard delay={0.15}>
+              <h3 className="font-semibold text-gray-900 mb-4">Public Cloud — Azure</h3>
+              <BulletList
+                items={[
+                  'Digital channels scalability',
+                  'Containers/AKS architecture',
+                  'Analytics/AI workloads',
+                  'DR for non-regulated workloads',
+                ]}
+                delay={0.08}
+              />
+            </InfoCard>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 12: Infrastructure Justification */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Infrastructure Justification" />
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <tbody>
+                {[
+                  { criterion: 'Scalability', justification: 'Cloud auto-scaling for peak periods' },
+                  { criterion: 'Cost', justification: 'Pay-as-you-use for non-critical workloads' },
+                  { criterion: 'Reliability', justification: 'Redundancy across DCs + cloud' },
+                  { criterion: 'Compliance', justification: 'Regulated data on-prem; cloud for suitable workloads' },
+                ].map((row, idx) => (
+                  <tr key={idx} className="border-b border-[#E5E7EB] hover:bg-gray-50">
+                    <td className="py-4 px-4 font-semibold text-gray-900 w-1/4">{row.criterion}</td>
+                    <td className="py-4 px-4 text-gray-700">{row.justification}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 13: Security Framework */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Information Systems Security — Zero Trust Controls" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              { label: 'Identity & Access', items: ['MFA', 'RBAC', 'SSO federation'] },
+              { label: 'Privileged Access', items: ['JIT access', 'Session logging', 'PAM'] },
+              { label: 'Encryption', items: ['At-rest', 'In-transit', 'Standards'] },
+              { label: 'Network Security', items: ['Segmentation', 'WAF', 'Isolation'] },
+              { label: 'Monitoring', items: ['SIEM', 'SOC 24/7', 'Alert automation'] },
+            ].map((control, idx) => (
+              <InfoCard key={idx} delay={idx * 0.1}>
+                <h4 className="font-semibold text-gray-900 mb-3 text-sm">{control.label}</h4>
+                <ul className="space-y-1">
+                  {control.items.map((item, i) => (
+                    <li key={i} className="text-xs text-gray-600">• {item}</li>
+                  ))}
+                </ul>
+              </InfoCard>
+            ))}
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 14: E-Business & Digital Value Creation */}
+      <Slide>
+        <div className="space-y-8">
+          <SectionTitle title="Electronic Business & Digital Value Creation" />
+          <div className="grid grid-cols-2 gap-8">
+            <InfoCard delay={0}>
+              <h3 className="font-semibold text-gray-900 mb-4">Digital Customer Experience</h3>
+              <BulletList
+                items={[
+                  'Enhanced mobile banking with real-time insights',
+                  'AI customer service chatbot (24/7)',
+                  'Personalized financial recommendations',
+                  'Seamless omnichannel experience',
+                ]}
+                delay={0.08}
+              />
+            </InfoCard>
+            <InfoCard delay={0.15}>
+              <h3 className="font-semibold text-gray-900 mb-4">New Digital Products / Revenue</h3>
+              <BulletList
+                items={[
+                  'Open banking API platform (partner ecosystem)',
+                  'SME-focused digital solution (BizConnect)',
+                  'Data-as-a-service offerings',
+                  'Innovation lab for fintech partnerships',
+                ]}
+                delay={0.08}
+              />
+            </InfoCard>
+          </div>
+        </div>
+      </Slide>
+
+      {/* SLIDE 15: Conclusion */}
+      <Slide>
+        <div className="space-y-12">
+          <SectionTitle title="Conclusion — Integrated, Secure, Scalable Digital Enterprise" />
+          <BulletList
+            items={[
+              'Business drivers → systems → infrastructure → security → e-business',
+              'Integration avoids duplication, delays, and risk',
+              'Enables operational efficiency, compliance resilience, and innovation',
+              'Transforms HNB into a cohesive, data-driven digital bank',
+            ]}
+            delay={0.12}
+          />
+          <div className="mt-16 pt-12 border-t border-[#E5E7EB]">
+            <p className="text-xl font-semibold text-[#2563EB] text-balance">
+              Transforming HNB into a cohesive, data-driven digital bank.
+            </p>
+          </div>
+        </div>
+      </Slide>
+    </Deck>
+  );
+}
