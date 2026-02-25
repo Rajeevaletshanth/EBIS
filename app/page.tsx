@@ -6,7 +6,6 @@ import { SectionTitle } from '@/components/presentation-system/section-title';
 import { BulletList } from '@/components/presentation-system/bullet-list';
 import { InfoCard } from '@/components/presentation-system/info-card';
 import { Stat } from '@/components/presentation-system/stat';
-import { DiagramRow } from '@/components/presentation-system/diagram-row';
 
 export default function Presentation() {
   return (
@@ -199,24 +198,85 @@ export default function Presentation() {
       <Slide>
         <div className="space-y-8">
           <SectionTitle title="Proposed Integrated Digital Enterprise Architecture" />
-          <div className="space-y-6">
-            <DiagramRow
-              items={[
-                { label: 'Digital Channels' },
-                { label: 'API Gateway', highlight: true },
-                { label: 'Core Banking (T24)' },
-              ]}
-              delay={0}
-            />
-            <div className="grid grid-cols-5 gap-3 justify-center px-8">
-              {['CRM', 'ERP', 'EDW + BI', 'Security', 'Monitoring'].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="px-4 py-3 border border-[#E5E7EB] rounded text-center text-sm text-gray-700 bg-gray-50"
-                >
-                  {item}
+          <div className="grid grid-cols-3 gap-6 items-start">
+            <div className="col-span-2 space-y-4">
+              {[
+                {
+                  title: 'External Touchpoints',
+                  color: 'from-blue-600 to-cyan-500',
+                  items: ['Mobile Banking', 'Internet Banking', 'ATM Network', 'Open Banking API'],
+                  note: 'Unified customer access across channels',
+                },
+                {
+                  title: 'API Gateway & Security Layer',
+                  color: 'from-indigo-600 to-violet-500',
+                  items: ['OAuth2 + MFA', 'Rate Limiting', 'WAF', 'Audit Logs + SIEM'],
+                  note: 'Single control point for identity, policy, and threat protection',
+                },
+                {
+                  title: 'SAP BTP Integration & Core Systems',
+                  color: 'from-fuchsia-600 to-pink-500',
+                  items: ['Integration Suite', 'API Management', 'Core Banking (T24)', 'CRM + ERP'],
+                  note: 'Process orchestration and trusted system-of-record integration',
+                },
+                {
+                  title: 'Enterprise Data Warehouse & MDM',
+                  color: 'from-emerald-600 to-teal-500',
+                  items: ['Regulatory Reporting', 'Risk & AML Analytics', 'Customer 360', 'Forecasting & BI'],
+                  note: 'Reliable data foundation for compliance and decisions',
+                },
+              ].map((layer, idx) => (
+                <div key={idx} className="relative">
+                  <div className={`absolute -inset-px rounded-xl bg-gradient-to-r ${layer.color} opacity-35`} />
+                  <div className="relative rounded-xl border border-white/70 bg-white/90 px-5 py-4 shadow-sm">
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="text-base font-semibold text-gray-900">{layer.title}</h3>
+                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Layer {idx + 1}</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-2">{layer.note}</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {layer.items.map((item, itemIdx) => (
+                        <span
+                          key={itemIdx}
+                          className="px-2.5 py-1 rounded-full text-xs font-medium text-gray-700 bg-gray-100 border border-gray-200"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  {idx < 3 && (
+                    <div className="flex justify-center py-2 text-gray-400 font-semibold text-sm">
+                      Flow Down
+                    </div>
+                  )}
                 </div>
               ))}
+            </div>
+
+            <div className="space-y-4">
+              <InfoCard delay={0.2}>
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Integration Outcomes</h3>
+                <ul className="space-y-2">
+                  {[
+                    'Straight-through processing for loans and payments',
+                    'Near real-time compliance and risk visibility',
+                    'Lower manual reconciliation and reporting effort',
+                    'Faster partner onboarding through reusable APIs',
+                  ].map((item, idx) => (
+                    <li key={idx} className="text-xs text-gray-700 leading-relaxed">- {item}</li>
+                  ))}
+                </ul>
+              </InfoCard>
+
+              <InfoCard delay={0.3}>
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Reference KPIs</h3>
+                <div className="space-y-2 text-xs text-gray-700">
+                  <p><span className="font-semibold text-emerald-700">Month-end close:</span> 5 days to 1-2 days</p>
+                  <p><span className="font-semibold text-emerald-700">Report preparation:</span> 3 days to same-day</p>
+                  <p><span className="font-semibold text-emerald-700">API onboarding:</span> weeks to days</p>
+                </div>
+              </InfoCard>
             </div>
           </div>
         </div>
